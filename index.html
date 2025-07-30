@@ -1,436 +1,331 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Índice</title>
-<style>
-    /* --- CSS Global Variables (Define your new, bolder color palette) --- */
-    :root {
-        --color-primary: #FF5722;        /* A vibrant, energetic orange/terra cotta for primary actions/highlights */
-        --color-secondary-accent: #00BCD4; /* A bright, refreshing turquoise for accents and subtle highlights */
-        --color-dark: #263238;           /* Very dark grey for strong text/backgrounds, deep contrast */
-        --color-medium-dark: #455A64;    /* Medium dark grey for secondary text and elements */
-        --color-light-background: #F8F9FA; /* Off-white for clean backgrounds, softer than pure white */
-        --color-white: #FFFFFF;          /* Pure white for elements that truly pop on dark backgrounds */
-        --color-border-light: #ECEFF1;   /* Very light grey for subtle borders */
-    }
-
-    /* --- General Body and Typography Styles --- */
-    body {
-        font-family: 'Montserrat', sans-serif; /* Consistent modern font */
-        margin: 0;
-        padding: 0;
-        line-height: 1.6;
-        color: var(--color-dark); /* Main text color, now a deeper dark */
-        background-color: var(--color-light-background); /* Softer off-white background */
-        scroll-behavior: smooth;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
-
-    /* General headings style */
-    h1, h2, h3 {
-        color: var(--color-dark); /* Headings in deep dark grey for strong contrast */
-        text-align: center;
-        margin-bottom: 25px; /* Slightly increased spacing for impact */
-        font-weight: 700; /* Bolder headings for more emphasis */
-        letter-spacing: -0.5px; /* Subtle letter spacing adjustment */
-    }
-
-    h1 { font-size: 3em; line-height: 1.2; color: var(--color-primary); } /* H1 in primary color for striking impact */
-    h2 { font-size: 2.5em; color: var(--color-medium-dark); } /* H2 in medium dark for good contrast */
-    h3 { font-size: 1.8em; }
-
-    p {
-        font-size: 1.15em; /* Slightly larger for readability */
-        line-height: 1.8;
-        margin-bottom: 25px; /* Consistent spacing */
-        color: var(--color-medium-dark); /* Secondary text color */
-    }
-
-    a {
-        text-decoration: none; /* Default link style */
-        color: var(--color-primary); /* Links in primary color */
-        font-weight: 600;
-        transition: color 0.3s ease;
-    }
-
-    a:hover {
-        color: var(--color-secondary-accent); /* Accent color on hover for general links */
-    }
-
-    /* --- Header Styles --- */
-    header {
-        background: var(--color-dark); /* Dark header for strong contrast with body */
-        color: var(--color-white); /* White text on dark header */
-        padding: 1.8rem 1rem; /* More generous padding */
-        text-align: center;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); /* Stronger, more noticeable shadow */
-    }
-
-    header h1 {
-        color: var(--color-white); /* Ensure header text is white */
-        margin: 0;
-        font-size: 2.8em; /* Adjusted header title size */
-        font-weight: 800; /* Extra bold for header title */
-    }
-
-    /* --- Main Content Area --- */
-    main {
-        flex-grow: 1;
-        padding: 50px 25px; /* Increased padding */
-        max-width: 1200px;
-        margin: 0 auto;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    /* --- Unordered Lists (ul) & List Items (li) Styles --- */
-    ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    li {
-        background: var(--color-white); /* White background for list items */
-        padding: 1.8rem; /* More generous padding */
-        margin-bottom: 1.2rem; /* Increased margin between items */
-        border-left: 6px solid var(--color-secondary-accent); /* Thicker, vibrant accent border */
-        max-width: 750px; /* Increased max-width */
-        margin-left: auto;
-        margin-right: auto;
-        border-radius: 12px; /* More pronounced rounded corners */
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08); /* Stronger shadow */
-        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smoother transitions */
-    }
-
-    li:hover {
-        transform: translateY(-5px); /* More noticeable lift effect */
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
-    }
-
-    li a {
-        text-decoration: none;
-        color: var(--color-dark); /* Link color inside list item */
-        font-weight: 700;
-        font-size: 1.2em; /* Slightly larger font */
-        transition: color 0.3s ease;
-    }
-
-    li a:hover {
-        color: var(--color-primary); /* Change to primary color on hover */
-    }
-
-    /* --- Navigation Bar (Main Nav - for potential complex nav) --- */
-    /* This section is designed for a main navigation with logo and hamburger */
-    .main-nav {
-        background-color: var(--color-white); /* Remains white for cleanliness */
-        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
-        padding: 18px 25px; /* Adjusted padding */
-        position: sticky;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1000;
-        border-bottom: 1px solid var(--color-border-light); /* Subtle border at the bottom */
-    }
-
-    .nav-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .nav-logo {
-        font-size: 2em; /* Slightly larger logo */
-        font-weight: 800; /* Bolder logo */
-        color: var(--color-primary); /* Logo in primary color */
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-
-    .nav-logo:hover {
-        color: var(--color-secondary-accent); /* Logo changes to accent color on hover */
-    }
-
-    .nav-menu {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        gap: 35px; /* More space between menu items */
-    }
-
-    .nav-item a {
-        text-decoration: none;
-        color: var(--color-medium-dark); /* Menu items in medium dark grey */
-        font-weight: 600;
-        font-size: 1.1em; /* Slightly larger font */
-        padding: 8px 0; /* Increased padding */
-        position: relative;
-        transition: color 0.3s ease;
-    }
-
-    .nav-item a:hover {
-        color: var(--color-primary); /* Primary color on hover for menu items */
-    }
-
-    .nav-item a::after {
-        content: '';
-        position: absolute;
-        bottom: -7px; /* Lower the underline slightly */
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0;
-        height: 4px; /* Thicker underline */
-        background-color: var(--color-primary); /* Underline in primary color */
-        border-radius: 3px; /* Slightly more rounded underline */
-        transition: width 0.3s ease, background-color 0.3s ease;
-    }
-
-    .nav-item a:hover::after,
-    .nav-item a.active::after {
-        width: 100%;
-        background-color: var(--color-primary); /* Ensures active/hover is primary */
-    }
-
-    /* Hamburger Menu for Mobile (part of main-nav) */
-    .hamburger-menu {
-        display: none;
-        flex-direction: column;
-        cursor: pointer;
-        gap: 7px; /* Slightly more gap */
-    }
-
-    .hamburger-bar {
-        width: 30px; /* Slightly wider bars */
-        height: 4px; /* Thicker bars */
-        background-color: var(--color-dark); /* Darker bars for contrast */
-        border-radius: 2px;
-        transition: all 0.3s ease;
-    }
-
-    .hamburger-menu.open .hamburger-bar:nth-child(1) { transform: translateY(11px) rotate(45deg); } /* Adjusted transform */
-    .hamburger-menu.open .hamburger-bar:nth-child(2) { opacity: 0; }
-    .hamburger-menu.open .hamburger-bar:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
-
-    /* --- Simple Nav (for your specific <a> based nav) --- */
-    /* This section specifically styles your <nav> element with <a> tags */
-    .simple-nav {
-        background-color: var(--color-white);
-        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
-        padding: 18px 40px; /* More generous padding */
-        border-radius: 12px; /* More rounded corners */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 50px; /* More space between links */
-        max-width: 900px; /* Increased max-width */
-        width: 90%;
-        margin: 30px auto; /* More margin for separation */
-        box-sizing: border-box;
-    }
-
-    .simple-nav a {
-        text-decoration: none;
-        color: var(--color-medium-dark); /* Links in medium dark grey */
-        font-weight: 600;
-        font-size: 1.2em; /* Larger font size */
-        padding: 8px 0;
-        position: relative;
-        transition: color 0.3s ease;
-    }
-
-    .simple-nav a:hover {
-        color: var(--color-primary); /* Primary color on hover */
-    }
-
-    .simple-nav a::after {
-        content: '';
-        position: absolute;
-        bottom: -7px; /* Lower and thicker underline */
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0;
-        height: 4px; /* Thicker underline */
-        background-color: var(--color-primary);
-        border-radius: 3px;
-        transition: width 0.3s ease, background-color 0.3s ease;
-    }
-
-    .simple-nav a:hover::after,
-    .simple-nav a.active::after {
-        width: 100%;
-        background-color: var(--color-primary);
-    }
-
-    /* --- Call to Action Button Styles (e.g., btn-tienda) --- */
-    .contenedor-boton {
-        background-color: var(--color-white);
-        padding: 50px; /* More generous padding */
-        border-radius: 15px; /* Even more rounded corners */
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Stronger, more prominent shadow */
-        text-align: center;
-        max-width: 550px; /* Slightly wider */
-        margin: 60px auto; /* More margin for separation */
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .contenedor-boton h2 {
-        font-size: 2em; /* Larger heading */
-        margin-bottom: 20px;
-        color: var(--color-primary); /* Heading in primary color */
-    }
-
-    .contenedor-boton p {
-        font-size: 1.1em;
-        color: var(--color-medium-dark); /* Paragraph in medium dark */
-        margin-bottom: 35px;
-    }
-
-    .btn-tienda {
-        display: inline-flex;
-        align-items: center;
-        gap: 15px; /* More space around icon */
-        background: linear-gradient(45deg, var(--color-primary), #E64A19); /* Gradient using primary and a darker shade */
-        color: var(--color-white);
-        padding: 20px 40px; /* Larger padding for a more substantial button */
-        border-radius: 50px; /* Continues full rounding */
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 1.4em; /* Larger font for impact */
-        letter-spacing: 0.8px; /* More pronounced letter spacing */
-        transition: all 0.3s ease-in-out; /* Smoother, more distinct transition */
-        box-shadow: 0 8px 20px rgba(255, 87, 34, 0.5); /* Stronger shadow with primary color tint */
-        border: none;
-        cursor: pointer;
-        text-transform: uppercase;
-        outline: none; /* Remove outline on focus */
-    }
-
-    .btn-tienda:hover {
-        transform: translateY(-5px); /* More significant lift */
-        box-shadow: 0 15px 30px rgba(255, 87, 34, 0.7); /* Even stronger, more vibrant shadow */
-        background: linear-gradient(45deg, #E64A19, var(--color-primary)); /* Reverse gradient subtly */
-    }
-
-    .btn-tienda:active {
-        transform: translateY(0); /* "Pressed" effect */
-        box-shadow: 0 5px 15px rgba(255, 87, 34, 0.4);
-    }
-
-    .btn-tienda img {
-        width: 30px; /* Larger icon */
-        height: 30px;
-        filter: invert(100%); /* Keeps icon white */
-    }
-
-    /* --- Media Queries for Responsiveness (General & Specific) --- */
-
-    @media (max-width: 768px) {
-        h1 { font-size: 2.5em; }
-        h2 { font-size: 2em; }
-        h3 { font-size: 1.6em; }
-        p { font-size: 1.05em; }
-
-        header { padding: 1.2rem 15px; }
-        main { padding: 40px 15px; }
-        li { padding: 1.2rem; border-left: 5px solid var(--color-secondary-accent); } /* Adjust border thickness */
-
-        /* Main Nav Mobile */
-        .main-nav { padding: 15px 15px; }
-        .nav-menu {
-            top: 65px; /* Adjusted top */
-            padding: 15px 0;
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Índice de Planes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS Global Variables (Tu nueva paleta de colores en Azules y Verdes) --- */
+        :root {
+            --color-primary: #00796B;        /* Verde azulado oscuro y sofisticado para acciones principales */
+            --color-secondary-accent: #2196F3; /* Azul vibrante para acentos y elementos secundarios */
+            --color-dark: #263238;           /* Gris muy oscuro para texto principal y fondos de alto contraste */
+            --color-medium-dark: #455A64;    /* Gris medio oscuro para texto secundario y elementos sutiles */
+            --color-light-background: #F8F9FA; /* Blanco roto para fondos limpios y suaves */
+            --color-white: #FFFFFF;          /* Blanco puro para elementos que necesitan resaltar sobre fondos oscuros */
+            --color-border-light: #ECEFF1;   /* Gris muy claro para bordes sutiles */
+            --color-primary-darker: #004D40; /* Tono más oscuro del primario para degradados/sombras */
+            --color-secondary-lighter: #64B5F6; /* Tono más claro del secundario para acentos */
         }
-        .nav-item a { font-size: 1em; padding: 8px 0; }
-        .nav-item a::after { bottom: -5px; height: 3px; }
-        .hamburger-menu { gap: 6px; }
-        .hamburger-bar { width: 28px; height: 3px; }
-        .hamburger-menu.open .hamburger-bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-        .hamburger-menu.open .hamburger-bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-
-        /* Simple Nav Mobile */
-        .simple-nav {
+        /* --- Estilos Generales del Cuerpo y Tipografía --- */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--color-dark);
+            background-color: var(--color-light-background);
+            scroll-behavior: smooth;
+            min-height: 100vh;
+            display: flex;
             flex-direction: column;
-            gap: 20px;
-            padding: 25px 15px;
-            width: 95%;
-            margin: 25px auto;
         }
-        .simple-nav a { font-size: 1.05em; padding: 10px 0; }
-        .simple-nav a::after { bottom: -5px; height: 3px; }
 
-        /* Button Container Mobile */
-        .btn-tienda {
-            padding: 18px 35px;
-            font-size: 1.2em;
-            gap: 12px;
-        }
-        .btn-tienda img {
-            width: 26px;
-            height: 26px;
-        }
-        .contenedor-boton {
-            padding: 40px;
-            margin: 40px auto;
-        }
-    }
-
-    @media (max-width: 480px) {
-        h1 { font-size: 2em; }
-        h2 { font-size: 1.8em; }
-        .btn-tienda {
-            width: 100%;
-            justify-content: center;
+        h1, h2, h3 {
+            color: var(--color-dark);
             text-align: center;
-            font-size: 1.1em;
-            padding: 15px 25px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
+
+        h1 { font-size: 3em; line-height: 1.2; color: var(--color-primary); }
+        h2 { font-size: 2.5em; color: var(--color-medium-dark); }
+        h3 { font-size: 1.8em; }
+
+        p {
+            font-size: 1.15em;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: var(--color-medium-dark);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color-primary);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-secondary-accent);
+        }
+
+        /* --- Estilos del Encabezado Principal (Header) --- */
+        header {
+            background: var(--color-dark);
+            color: var(--color-white);
+            padding: 1.8rem 1rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            color: var(--color-white);
+            margin: 0;
+            font-size: 2.8em;
+            font-weight: 800;
+        }
+
+        /* --- Área de Contenido Principal (Main) --- */
+        main {
+            flex-grow: 1;
+            padding: 50px 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* --- Listas Desordenadas (ul) y Elementos de Lista (li) --- */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background: var(--color-white);
+            padding: 1.8rem;
+            margin-bottom: 1.2rem;
+            border-left: 6px solid var(--color-secondary-accent); /* Borde de acento azul vibrante */
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        li a {
+            text-decoration: none;
+            color: var(--color-dark);
+            font-weight: 700;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        li a:hover {
+            color: var(--color-primary); /* Cambia al verde azulado al pasar el ratón */
+        }
+
+        li small {
+            display: block;
+            color: var(--color-medium-dark);
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        /* --- Barra de Navegación (Nav) --- */
+        nav {
+            background-color: var(--color-white);
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+            padding: 18px 40px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            max-width: 900px;
+            width: 90%;
+            margin: 30px auto;
+            box-sizing: border-box;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--color-medium-dark);
+            font-weight: 600;
+            font-size: 1.2em;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--color-primary); /* Verde azulado al pasar el ratón */
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -7px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 4px;
+            background-color: var(--color-primary); /* Subrayado en verde azulado */
+            border-radius: 3px;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+            background-color: var(--color-primary);
+        }
+
+        /* --- Estilos del Botón de Llamada a la Acción (e.g., btn-tienda) --- */
         .contenedor-boton {
-            padding: 30px;
+            background-color: var(--color-white);
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 550px;
+            margin: 60px auto;
+            width: 100%;
+            box-sizing: border-box;
         }
-    }
-</style>
+
+        .contenedor-boton h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: var(--color-primary); /* Título en verde azulado */
+        }
+
+        .contenedor-boton p {
+            font-size: 1.1em;
+            color: var(--color-medium-dark);
+            margin-bottom: 35px;
+        }
+
+        .btn-tienda {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-primary-darker)); /* Degradado de verdes */
+            color: var(--color-white);
+            padding: 20px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.4em;
+            letter-spacing: 0.8px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 8px 20px rgba(0, 121, 107, 0.5); /* Sombra con tinte de color primario */
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            outline: none;
+        }
+
+        .btn-tienda:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 121, 107, 0.7);
+            background: linear-gradient(45deg, var(--color-primary-darker), var(--color-primary)); /* Invertir degradado */
+        }
+
+        .btn-tienda:active {
+            transform: translateY(0);
+            box-shadow: 0 5px 15px rgba(0, 121, 107, 0.4);
+        }
+
+        .btn-tienda img {
+            width: 30px;
+            height: 30px;
+            filter: invert(100%);
+        }
+
+        /* --- Media Queries para Responsividad --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            h2 { font-size: 2em; }
+            h3 { font-size: 1.6em; }
+            p { font-size: 1.05em; }
+
+            header { padding: 1.2rem 15px; }
+            main { padding: 40px 15px; }
+            li { padding: 1.2rem; border-left: 5px solid var(--color-secondary-accent); }
+
+            nav {
+                flex-direction: column;
+                gap: 20px;
+                padding: 25px 15px;
+                width: 95%;
+                margin: 25px auto;
+            }
+            nav a { font-size: 1.05em; padding: 10px 0; }
+            nav a::after { bottom: -5px; height: 3px; }
+
+            .btn-tienda {
+                padding: 18px 35px;
+                font-size: 1.2em;
+                gap: 12px;
+            }
+            .btn-tienda img {
+                width: 26px;
+                height: 26px;
+            }
+            .contenedor-boton {
+                padding: 40px;
+                margin: 40px auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.8em; }
+            .btn-tienda {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+                font-size: 1.1em;
+                padding: 15px 25px;
+            }
+            .contenedor-boton {
+                padding: 30px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Índice de Planes</h1>
-  </header>
-  <nav  class="simple-nav">
-    <a href="index.html">Indice</a>
-    <a href="negocio1.html">Plan 1</a>
-    <a href="negocio2.html">Plan 2</a>
-  </nav>
-  <main>
-    <h2 id="recursos">Planes</h2>
-    <ul>
-      <li>
-        <a href="negocio1.html">Plan 1</a><br/>
-        <small>Dropshiping - tienda virtual.</small>
-      </li>
-      <li>
-        <a href="negocio2.html">Plan 2</a><br/>
-        <small>Marketing de afiliados.</small>
-      </li>
-    </ul>
- 
-   <div class="contenedor-boton">
-        <h2>Descubre Nuestra Colección Completa</h2>
-        <p>Explora todos nuestros productos y encuentra exactamente lo que necesitas en nuestra tienda virtual.</p>
-        <a href="tienda.html" class="btn-tienda" target="_blank">
-            <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Icono de Tienda">
-            Visitar Tienda Ahora
-        </a>
-    </div>
-     </main>
- 
+    <header>
+        <h1>Índice de Planes</h1>
+    </header>
+    <nav>
+        <a href="index.html" class="active">Índice</a>
+        <a href="negocio1.html">Plan 1</a>
+        <a href="negocio2.html">Plan 2</a>
+    </nav>
+    <main>
+        <h2 id="recursos">Nuestros Planes Destacados</h2>
+        <ul>
+            <li>
+                <a href="negocio1.html">Plan 1: Dropshipping - Tu Tienda Virtual</a><br/>
+                <small>Lanza y gestiona tu propio negocio de dropshipping sin necesidad de inventario.</small>
+            </li>
+            <li>
+                <a href="negocio2.html">Plan 2: Marketing de Afiliados - Genera Ingresos Online</a><br/>
+                <small>Aprende estrategias efectivas para promocionar productos y ganar comisiones.</small>
+            </li>
+        </ul>
+
+        <div class="contenedor-boton">
+            <h2>Descubre Nuestra Colección Completa</h2>
+            <p>Explora todos nuestros productos y encuentra exactamente lo que necesitas en nuestra tienda virtual.</p>
+            <a href="tienda.html" class="btn-tienda" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Icono de Tienda">
+                Visitar Tienda Ahora
+            </a>
+        </div>
+    </main>
 </body>
 </html>
