@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Haz tu Pedido por WhatsApp!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Variables de Colores */
+        :root {
+            --color-primary-blue: #2196F3; /* Azul vibrante para acción */
+            --color-secondary-green: #4CAF50; /* Verde para éxito/WhatsApp */
+            --color-dark-gray: #333333;
+            --color-medium-gray: #666666;
+            --color-light-gray: #F5F5F5;
+            --color-white: #FFFFFF;
+            --color-border: #E0E0E0;
+        }
+
+        /* Estilos Generales */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--color-dark-gray);
+            background-color: var(--color-white);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            color: var(--color-dark-gray);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.2em;
+            font-weight: 600;
+            color: var(--color-primary-blue);
+        }
+
+        h3 {
+            font-size: 1.6em;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* Botones CTA */
+        .btn-whatsapp {
+            display: inline-block;
+            background-color: var(--color-secondary-green);
+            color: var(--color-white);
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 auto; /* Centrar botón */
+            max-width: 300px;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #4CAF50; /* Un verde ligeramente más oscuro al pasar el mouse */
+            transform: translateY(-2px);
+        }
+
+        .btn-whatsapp img {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(33, 150, 243, 0.7), rgba(33, 150, 243, 0.7)), url('https://via.placeholder.com/1920x600/2196F3/FFFFFF?text=Imagen+Impactante') no-repeat center center/cover;
+            color: var(--color-white);
+            text-align: center;
+            padding: 100px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 500px;
+        }
+
+        .hero h1 {
+            color: var(--color-white);
+            margin-bottom: 20px;
+            font-size: 3.5em; /* Más grande en desktop */
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--color-light-gray);
+        }
+
+        /* Sección de Productos */
+        .products {
+            background-color: var(--color-light-gray);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .product-card {
+            background-color: var(--color-white);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .product-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-info h3 {
+            font-size: 1.4em;
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--color-dark-gray);
+            text-align: left;
+        }
+
+        .product-info p {
+            font-size: 0.95em;
+            color: var(--color-medium-gray);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .product-info .price {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--color-secondary-green);
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .product-card .btn-whatsapp {
+            font-size: 0.9em;
+            padding: 10px 15px;
+            margin-top: auto; /* Empuja el botón hacia abajo */
+            max-width: none; /* Quita el max-width para que se ajuste */
+        }
+
+        /* Sección de Beneficios */
+        .benefits {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .benefit-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .benefit-item img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 20px;
+        }
+
+        .benefit-item h3 {
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .benefit-item p {
+            color: var(--color-medium-gray);
+            font-size: 1em;
+        }
+
+        /* Sección Final CTA */
+        .final-cta {
+            background-color: var(--color-primary-blue);
+            color: var(--color-white);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            color: var(--color-white);
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .final-cta .btn-whatsapp {
+            background-color: var(--color-secondary-green); /* Verde para el CTA final también */
+            padding: 18px 40px;
+            font-size: 1.4em;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-dark-gray);
+            color: var(--color-light-gray);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9em;
+        }
+
+        footer p {
+            margin: 5px 0;
+            color: var(--color-light-gray);
+        }
+
+        footer a {
+            color: var(--color-primary-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--color-secondary-green);
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            display: inline-block;
+        }
+
+        .social-icons img {
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+            filter: invert(100%); /* Para que los iconos se vean bien en fondo oscuro */
+        }
+
+        /* Media Queries para Responsividad */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            h3 {
+                font-size: 1.4em;
+            }
+            .hero {
+                padding: 80px 20px;
+                min-height: 400px;
+            }
+            .hero h1 {
+                font-size: 2.8em;
+            }
+            .hero p {
+                font-size: 1.1em;
+            }
+            .products, .benefits, .final-cta {
+                padding: 60px 20px;
+            }
+            .product-grid, .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            .product-card {
+                max-width: 400px; /* Limitar ancho en móvil para mejor lectura */
+                margin: 0 auto;
+            }
+            .btn-whatsapp {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+            .final-cta .btn-whatsapp {
+                font-size: 1.2em;
+                padding: 15px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.6em;
+            }
+            .hero {
+                padding: 60px 15px;
+            }
+            .hero h1 {
+                font-size: 2.2em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="container">
+            <h1>¡Encuentra lo que buscas y pide fácil por WhatsApp!</h1>
+            <p>Explora nuestro catálogo exclusivo y contáctanos para una atención personalizada y rápida. Tu tienda favorita, a solo un clic de distancia.</p>
+            <a href="https://wa.me/XXXXXXXXXXX?text=Hola!%20Estoy%20interesado%20en%20sus%20productos." class="btn-whatsapp" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
+                Pedir por WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <section class="products">
+        <div class="container">
+            <h2>Nuestros Productos Destacados</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300x250/A7D9B4/333333?text=Producto+A" alt="Producto A">
+                    <div class="product-info">
+                        <h3>Producto Increíble A</h3>
+                        <p>Descripción breve y atractiva del Producto A. Destaca sus beneficios clave y por qué es ideal para ti.</p>
+                        <span class="price">$XX.XX USD</span>
+                        <a href="https://wa.me/XXXXXXXXXXX?text=Hola!%20Estoy%20interesado%20en%20el%20producto%20Producto%20Increíble%20A." class="btn-whatsapp" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
+                            Preguntar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300x250/9FB8D3/333333?text=Producto+B" alt="Producto B">
+                    <div class="product-info">
+                        <h3>Artículo Esencial B</h3>
+                        <p>Una descripción concisa del Artículo B. Menciona sus características principales y su utilidad en el día a día.</p>
+                        <span class="price">$YY.YY USD</span>
+                        <a href="https://wa.me/XXXXXXXXXXX?text=Hola!%20Estoy%20interesado%20en%20el%20producto%20Artículo%20Esencial%20B." class="btn-whatsapp" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
+                            Preguntar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300x250/C1E1D1/333333?text=Producto+C" alt="Producto C">
+                    <div class="product-info">
+                        <h3>Innovación Única C</h3>
+                        <p>Descubre los detalles de Innovación C. Cómo puede mejorar tu vida o resolver un problema específico.</p>
+                        <span class="price">$ZZ.ZZ USD</span>
+                        <a href="https://wa.me/XXXXXXXXXXX?text=Hola!%20Estoy%20interesado%20en%20el%20producto%20Innovación%20Única%20C." class="btn-whatsapp" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
+                            Preguntar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300x250/C8D5E3/333333?text=Producto+D" alt="Producto D">
+                    <div class="product-info">
+                        <h3>Opción Premium D</h3>
+                        <p>Experimenta la calidad superior de la Opción D. Materiales, durabilidad y lo que la hace especial.</p>
+                        <span class="price">$WW.WW USD</span>
+                        <a href="https://wa.me/XXXXXXXXXXX?text=Hola!%20Estoy%20interesado%20en%20el%20producto%20Opción%20Premium%20D." class="btn-whatsapp" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
+                            Preguntar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <a href="https://wa.me/XXXXXXXXXXX?text=Hola!%20Quisiera%20ver%20todo%20su%20catálogo%20de%20productos." class="btn-whatsapp" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
+                Ver Más Productos
+            </a>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="container">
+            <h2>Por Qué Elegirnos</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3257/3257745.png" alt="Envío Rápido">
+                    <h3>Envío Rápido y Seguro</h3>
+                    <p>Recibe tus pedidos en tiempo récord y con la mayor protección.</p>
+                </div>
+                <div class="benefit-item">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4844/4844007.png" alt="Atención Personalizada">
+                    <h3>Atención Personalizada</h3>
+                    <p>Nuestro equipo te asesora directamente por WhatsApp, resolviendo todas tus dudas.</p>
+                </div>
+                <div class="benefit-item">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="Calidad Garantizada">
+                    <h3>Calidad Garantizada</h3>
+                    <p>Seleccionamos solo los mejores productos para asegurar tu completa satisfacción.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <div class="container">
+            <h2>¿Listo para hacer tu pedido?</h2>
+            <p>Estamos aquí para ayudarte. Contáctanos por WhatsApp y recibe una atención excepcional.</p>
+            <a href="https://wa.me/XXXXXXXXXXX?text=Hola!%20Estoy%20listo%20para%20hacer%20un%20pedido." class="btn-whatsapp" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
+                ¡Pide Ahora por WhatsApp!
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Tu Marca. Todos los derechos reservados.</p>
+            <p>
+                <a href="#">Política de Privacidad</a> | <a href="#">Términos de Servicio</a>
+            </p>
+            <div class="social-icons">
+                <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174848.png" alt="Facebook"></a>
+                <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram"></a>
+                </div>
+        </div>
+    </footer>
+
+</body>
+</html>
