@@ -230,211 +230,418 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Model Canvas - Hotmart Afiliados</title>
+    <title>Guía Hotmart: Marketing de Afiliados</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #F0F2F5; /* Light Gray */
             color: #4A4A4A; /* Dark Gray */
         }
-        .canvas-container {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: auto auto auto;
-            gap: 1rem;
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 1rem;
+        .section-card {
             background-color: #FFFFFF;
             border-radius: 12px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
         }
-        .canvas-block {
-            padding: 1.5rem;
-            border-radius: 8px;
-            min-height: 180px;
+        .step-header {
             display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
+            align-items: center;
+            margin-bottom: 1rem;
         }
-        .block-title {
+        .step-number {
+            background-color: #50E3C2; /* Green */
+            color: #FFFFFF;
             font-weight: 700;
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-            color: #50E3C2; /* Green from palette */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            margin-right: 1rem;
         }
-        .block-content ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .step-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #50E3C2; /* Green */
         }
-        .block-content li {
-            margin-bottom: 0.25rem;
-            line-height: 1.4;
-            font-size: 0.9rem;
+        .flow-box {
+            background-color: #E0FFF8; /* Lighter Green */
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #2D3748;
+            margin-bottom: 0.5rem;
         }
-
-        /* Specific grid areas for BMC layout */
-        .key-partners { grid-area: 2 / 1 / 3 / 2; }
-        .key-activities { grid-area: 2 / 2 / 3 / 3; }
-        .value-propositions { grid-area: 2 / 3 / 3 / 4; }
-        .customer-relationships { grid-area: 2 / 4 / 3 / 5; }
-        .customer-segments { grid-area: 2 / 5 / 3 / 6; }
-        .key-resources { grid-area: 3 / 2 / 4 / 3; }
-        .channels { grid-area: 3 / 4 / 4 / 5; }
-        .cost-structure { grid-area: 4 / 1 / 5 / 3; }
-        .revenue-streams { grid-area: 4 / 4 / 5 / 6; }
-
-        /* Mobile adjustments */
-        @media (max-width: 768px) {
-            .canvas-container {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto;
-                margin: 1rem auto;
-                padding: 0.5rem;
-            }
-            .canvas-block {
-                min-height: auto;
-                padding: 1rem;
-            }
-            .key-partners, .key-activities, .value-propositions,
-            .customer-relationships, .customer-segments, .key-resources,
-            .channels, .cost-structure, .revenue-streams {
-                grid-area: auto;
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: #50E3C2;
+            text-align: center;
+            margin: 0.25rem 0;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="text-center py-8 bg-green-600 text-white">
-        <h1 class="text-3xl font-bold">Business Model Canvas</h1>
-        <p class="text-xl">Comercialización de Productos de Hotmart (Marketing de Afiliados)</p>
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <!-- Header -->
+        <header class="text-center mb-12 bg-green-600 text-white py-8 rounded-lg shadow-md">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">Guía Paso a Paso: Tu Negocio de Afiliados</h1>
+            <p class="text-xl md:text-2xl font-light">Con Hotmart y Redes Sociales</p>
+        </header>
+
+        <!-- Introducción -->
+        <div class="section-card">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">¿Qué es el Marketing de Afiliados con Hotmart?</h2>
+            <p class="text-gray-700 leading-relaxed">
+                El marketing de afiliados te permite vender productos digitales (cursos, ebooks, software) de otras personas y ganar una comisión por cada venta, sin necesidad de crear tu propio producto ni manejar inventario. **Hotmart** es la plataforma líder para encontrar y promover estos infoproductos. Es un modelo de negocio de baja inversión y alto potencial de ganancia, ideal para empezar.
+            </p>
+        </div>
+
+        <!-- Paso 1: Define tu Nicho y Audiencia -->
+        <div class="section-card">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <h2 class="step-title">Define tu Nicho y Audiencia</h2>
+            </div>
+            <p class="text-gray-700 mb-4">
+                Encuentra un tema que te apasione y donde puedas resolver un problema específico para un grupo de personas.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-green-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-lg text-green-700 mb-2">1.1 Encuentra tu Nicho</h3>
+                    <div class="space-y-2">
+                        <div class="flow-box">Identifica tus Pasiones e Intereses</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-box">Detecta Problemas o Necesidades en el Mercado</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-box">Valida la Demanda (Google Trends, foros, redes)</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-box">Define tu Nicho Específico</div>
+                    </div>
+                </div>
+                <div class="bg-green-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-lg text-green-700 mb-2">1.2 Conoce a tu Avatar (Cliente Ideal)</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Demografía: Edad, ubicación, profesión.</li>
+                        <li>Psicografía: Miedos, deseos, aspiraciones, objeciones.</li>
+                        <li>¿Qué redes sociales usa? ¿Qué tipo de contenido consume?</li>
+                        <li>Esto te ayudará a crear contenido relevante y a conectar mejor.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paso 2: Elige Productos Ganadores en Hotmart -->
+        <div class="section-card">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <h2 class="step-title">Elige Productos Ganadores en Hotmart</h2>
+            </div>
+            <p class="text-gray-700 mb-4">
+                No todos los productos son iguales. Selecciona aquellos que realmente aporten valor y te den una buena comisión.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-blue-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-lg text-blue-700 mb-2">2.1 Criterios de Selección</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>**Comisión Atractiva:** Busca productos con 40% o más de comisión.</li>
+                        <li>**Blueprint:** Alta puntuación (calidad del material de apoyo para afiliados).</li>
+                        <li>**Temperatura:** Alta (indica muchas ventas), pero no excesivamente alta (mucha competencia).</li>
+                        <li>**Página de Ventas:** Que sea persuasiva y profesional.</li>
+                        <li>**Soporte del Productor:** Que el creador del curso brinde buen apoyo.</li>
+                    </ul>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-lg text-blue-700 mb-2">2.2 Afiliación y Enlaces</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Regístrate en Hotmart y explora el Mercado.</li>
+                        <li>Solicita la afiliación a los productos que elijas.</li>
+                        <li>Guarda tus "HotLinks" (enlaces de afiliado) de forma segura. Estos son clave para que te atribuyan las ventas.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paso 3: Construye tu Plataforma (Facebook) -->
+        <div class="section-card">
+            <div class="step-header">
+                <div class="step-number">3</div>
+                <h2 class="step-title">Construye tu Plataforma (Facebook)</h2>
+            </div>
+            <p class="text-gray-700 mb-4">
+                Tu perfil o página de Facebook será tu centro de operaciones para atraer y conectar con tu audiencia.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-yellow-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-lg text-yellow-700 mb-2">3.1 Perfil/Página Optimizada</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Crea un perfil personal o una página de negocio enfocada en tu nicho.</li>
+                        <li>Optimiza tu biografía/descripción para que sea clara y atractiva.</li>
+                        <li>Usa una foto de perfil profesional y una portada relevante.</li>
+                    </ul>
+                </div>
+                <div class="bg-yellow-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-lg text-yellow-700 mb-2">3.2 Grupos y Comunidades</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Únete a grupos de Facebook relacionados con tu nicho.</li>
+                        <li>Participa activamente, aporta valor sin hacer spam.</li>
+                        <li>Considera crear tu propio grupo para construir una comunidad más fuerte.</li>
+                    </ul>
+                </div>
+                <div class="bg-yellow-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-lg text-yellow-700 mb-2">3.3 Messenger/WhatsApp</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Prepara estas herramientas para la comunicación directa con tus leads.</li>
+                        <li>Serán clave para resolver dudas y cerrar ventas de forma personalizada.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paso 4: Crea Contenido de Valor -->
+        <div class="section-card">
+            <div class="step-header">
+                <div class="step-number">4</div>
+                <h2 class="step-title">Crea Contenido de Valor</h2>
+            </div>
+            <p class="text-gray-700 mb-4">
+                El contenido es el rey. Atrae a tu audiencia ofreciéndoles soluciones y educación gratuita.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-purple-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-lg text-purple-700 mb-2">4.1 Tipos de Contenido</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>**Educativo:** Tutoriales, consejos, "cómo hacer".</li>
+                        <li>**Inspiracional:** Historias de éxito, motivación.</li>
+                        <li>**Resolución de Problemas:** Aborda los puntos de dolor de tu audiencia.</li>
+                        <li>**Interactivo:** Preguntas, encuestas, lives.</li>
+                        <li>**Formatos:** Posts de texto, imágenes, videos cortos (Reels), historias.</li>
+                    </ul>
+                </div>
+                <div class="bg-purple-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-lg text-purple-700 mb-2">4.2 Estrategia de Contenido</h3>
+                    <div class="chart-container">
+                        <h3 class="text-xl font-semibold mb-2 text-center text-gray-700">Distribución de Contenido</h3>
+                        <canvas id="contentDistributionChart"></canvas>
+                        <p class="text-sm text-gray-600 text-center mt-2">
+                            Prioriza el contenido de valor para construir autoridad y confianza.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paso 5: Genera y Nutre Leads -->
+        <div class="section-card">
+            <div class="step-header">
+                <div class="step-number">5</div>
+                <h2 class="step-title">Genera y Nutre Leads</h2>
+            </div>
+            <p class="text-gray-700 mb-4">
+                Convierte a tus seguidores en potenciales clientes interesados en lo que ofreces.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-red-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-lg text-red-700 mb-2">5.1 Embudo de Conversión</h3>
+                    <div class="space-y-2">
+                        <div class="flow-box">Atraer (Contenido de Valor)</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-box">Interactuar (Comentarios, Mensajes)</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-box">Convertir (Llamada a la Acción, Lead)</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-box">Cerrar Venta (Presentar Producto Hotmart)</div>
+                    </div>
+                </div>
+                <div class="bg-red-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-lg text-red-700 mb-2">5.2 Nutrición y Confianza</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Responde a todos los comentarios y mensajes.</li>
+                        <li>Ofrece ayuda personalizada en Messenger/WhatsApp.</li>
+                        <li>Comparte testimonios y pruebas sociales de los productos que promueves.</li>
+                        <li>Construye una relación genuina antes de vender.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paso 6: Vende y Escala -->
+        <div class="section-card">
+            <div class="step-header">
+                <div class="step-number">6</div>
+                <h2 class="step-title">Vende y Escala</h2>
+            </div>
+            <p class="text-gray-700 mb-4">
+                Una vez que el sistema funciona, es momento de optimizar y buscar el crecimiento.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-teal-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-lg text-teal-700 mb-2">6.1 Estrategias de Venta</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Presenta el producto Hotmart como la solución a su problema.</li>
+                        <li>Usa llamados a la acción claros y directos.</li>
+                        <li>Maneja objeciones y dudas con empatía.</li>
+                        <li>Utiliza tus HotLinks correctamente.</li>
+                    </ul>
+                </div>
+                <div class="bg-teal-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-lg text-teal-700 mb-2">6.2 Análisis y Escalado</h3>
+                    <div class="chart-container">
+                        <h3 class="text-xl font-semibold mb-2 text-center text-gray-700">Crecimiento Proyectado de Comisiones</h3>
+                        <canvas id="commissionGrowthChart"></canvas>
+                        <p class="text-sm text-gray-600 text-center mt-2">
+                            Con la optimización continua, tus comisiones crecerán exponencialmente.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conclusión -->
+        <div class="section-card text-center">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">¡Tu Éxito en Hotmart es Posible!</h2>
+            <p class="text-gray-700 leading-relaxed">
+                El marketing de afiliados con Hotmart es un camino probado para generar ingresos online. Requiere **dedicación, aprendizaje constante y la construcción de relaciones genuinas**. Sigue estos pasos, mantente enfocado y verás cómo tu negocio digital florece.
+            </p>
+        </div>
+
     </div>
 
-    <div class="canvas-container">
-        <!-- Key Partners -->
-        <div class="canvas-block key-partners bg-green-50">
-            <h2 class="block-title">Alianzas Clave</h2>
-            <div class="block-content">
-                <ul>
-                    <li>- Hotmart: Plataforma de afiliación y acceso a infoproductos.</li>
-                    <li>- Productores de Hotmart: Creadores de los cursos/productos digitales.</li>
-                    <li>- Facebook/Meta: Plataforma para la construcción de audiencia y publicidad.</li>
-                    <li>- WhatsApp: Herramienta de comunicación directa con leads.</li>
-                </ul>
-            </div>
-        </div>
+    <script>
+        // Chart.js tooltip configuration for multiline labels
+        const tooltipConfig = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        };
 
-        <!-- Key Activities -->
-        <div class="canvas-block key-activities bg-green-50">
-            <h2 class="block-title">Actividades Clave</h2>
-            <div class="block-content">
-                <ul>
-                    <li>- Investigación de Nicho y Avatar: Entender profundamente a la audiencia.</li>
-                    <li>- Selección de Productos Hotmart: Elegir infoproductos de alta calidad y buena comisión.</li>
-                    <li>- Creación de Contenido: Generar contenido de valor diario/semanal en Facebook.</li>
-                    <li>- Interacción con la Audiencia: Responder comentarios, mensajes, construir comunidad.</li>
-                    <li>- Nutrición de Leads: Guiar a los interesados hacia la compra del producto.</li>
-                    <li>- Análisis de Métricas: Monitorear alcance, engagement, clics en enlaces de afiliado.</li>
-                </ul>
-            </div>
-        </div>
+        // Function to wrap long labels
+        function wrapLabel(label) {
+            if (label.length <= 16) {
+                return label;
+            }
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (let i = 0; i < words.length; i++) {
+                const word = words[i];
+                if ((currentLine + word).length <= 16 || currentLine === '') {
+                    currentLine += (currentLine === '' ? '' : ' ') + word;
+                } else {
+                    lines.push(currentLine);
+                    currentLine = word;
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
 
-        <!-- Value Propositions -->
-        <div class="canvas-block value-propositions bg-green-100">
-            <h2 class="block-title">Propuesta de Valor</h2>
-            <div class="block-content">
-                <ul>
-                    <li>- Soluciones a problemas específicos: Curación y recomendación de productos digitales de Hotmart que realmente resuelven un problema o necesidad.</li>
-                    <li>- Contenido de valor gratuito: Educación y consejos relevantes que construyen autoridad y confianza.</li>
-                    <li>- Acceso a expertos: Conexión con infoproductores de alta calidad.</li>
-                    <li>- Flexibilidad y accesibilidad: Productos digitales disponibles 24/7 desde cualquier lugar.</li>
-                </ul>
-            </div>
-        </div>
+        // Chart: Content Distribution
+        const contentDistributionCtx = document.getElementById('contentDistributionChart').getContext('2d');
+        const contentDistributionChart = new Chart(contentDistributionCtx, {
+            type: 'pie',
+            data: {
+                labels: [
+                    wrapLabel('Contenido de Valor (Educativo/Solución)'),
+                    wrapLabel('Contenido de Interacción (Preguntas/Encuestas)'),
+                    wrapLabel('Contenido de Venta (Promoción Directa)')
+                ],
+                datasets: [{
+                    label: 'Distribución de Contenido',
+                    data: [60, 30, 10], // Example percentages
+                    backgroundColor: ['#50E3C2', '#4A90E2', '#F5A623'], /* Green, Blue, Orange */
+                    borderColor: '#FFFFFF',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    tooltip: tooltipConfig.plugins.tooltip
+                }
+            }
+        });
 
-        <!-- Customer Relationships -->
-        <div class="canvas-block customer-relationships bg-green-50">
-            <h2 class="block-title">Relación con Clientes</h2>
-            <div class="block-content">
-                <ul>
-                    <li>- Comunidad y Valor: Interacción constante a través de contenido educativo, respuestas a preguntas y participación en grupos.</li>
-                    <li>- Personalizada: Comunicación directa vía Messenger o WhatsApp para resolver dudas y guiar en el proceso de compra.</li>
-                    <li>- Autoridad y Confianza: Posicionamiento como referente en el nicho, ofreciendo soluciones genuinas.</li>
-                </ul>
-            </div>
-        </div>
+        // Chart: Projected Commission Growth
+        const commissionGrowthCtx = document.getElementById('commissionGrowthChart').getContext('2d');
+        const commissionGrowthChart = new Chart(commissionGrowthCtx, {
+            type: 'line',
+            data: {
+                labels: ['Mes 1', 'Mes 2', 'Mes 3', 'Mes 4', 'Mes 5', 'Mes 6'],
+                datasets: [{
+                    label: 'Comisión Proyectada (USD)',
+                    data: [0, 150, 500, 1000, 1500, 2500],
+                    backgroundColor: 'rgba(80, 227, 194, 0.2)',
+                    borderColor: '#50E3C2',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: tooltipConfig.plugins.tooltip
+                }
+            }
+        });
+    </script>
 
-        <!-- Customer Segments -->
-        <div class="canvas-block customer-segments bg-green-50">
-            <h2 class="block-title">Segmentos de Clientes</h2>
-            <div class="block-content">
-                <ul>
-                    <li>- Personas en Latinoamérica (20-60 años) con necesidades específicas de aprendizaje o desarrollo personal/profesional.</li>
-                    <li>- Interesados en cursos, ebooks, seminarios online sobre nichos específicos (ej. desarrollo personal, emprendimiento digital, salud, habilidades técnicas, hobbies).</li>
-                </ul>
-            </div>
-        </div>
+</body>
+</html>
 
-        <!-- Key Resources -->
-        <div class="canvas-block key-resources bg-green-50">
-            <h2 class="block-title">Recursos Clave</h2>
-            <div class="block-content">
-                <ul>
-                    <li>- Cuenta Hotmart: Acceso al catálogo de productos.</li>
-                    <li>- Perfil/Página de Facebook: Plataforma de contenido e interacción.</li>
-                    <li>- Contenido: Artículos, videos cortos, infografías, posts que generen valor.</li>
-                    <li>- Conocimiento: Marketing de contenidos, copywriting, ventas.</li>
-                    <li>- Tiempo: Inversión significativa en creación de contenido y construcción de comunidad.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Channels -->
-        <div class="canvas-block channels bg-green-50">
-            <h2 class="block-title">Canales</h2>
-            <div class="block-content">
-                <ul>
-                    <li>- Online:</li>
-                    <ul class="ml-4">
-                        <li>- Perfil/Página de Facebook (principal)</li>
-                        <li>- Grupos de Facebook (nichos específicos)</li>
-                        <li>- Facebook Ads (opcional, para escalar)</li>
-                        <li>- WhatsApp (para nutrición de leads y cierre de ventas)</li>
-                        <li>- Email Marketing (opcional, para construir lista)</li>
-                    </ul>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Cost Structure -->
-        <div class="canvas-block cost-structure bg-red-50 col-span-2">
-            <h2 class="block-title">Estructura de Costos</h2>
-            <div class="block-content">
-                <ul>
-                    <li>- Tiempo: Principal costo, inversión de horas en creación de contenido y gestión.</li>
-                    <li>- Publicidad Pagada (Facebook Ads): Opcional, para escalar la adquisición de leads/audiencia.</li>
-                    <li>- Herramientas de Diseño (opcional): Canva Pro, etc.</li>
-                    <li>- Herramientas de automatización (opcional): Para WhatsApp o email marketing.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Revenue Streams -->
-        <div class="canvas-block revenue-streams bg-green-50 col-span-2">
-            <h2 class="block-title">Fuentes de Ingresos</h2>
-            <div class="block-content">
-                <ul>
-                    <li>- Comisiones por venta: Porcentaje de cada venta realizada a través de enlaces de afiliado de Hotmart.</li>
-                </ul>
-            </div>
-        </div>
     </div>
 
 </body>
