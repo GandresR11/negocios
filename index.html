@@ -44,6 +44,106 @@
       color: #004d40;
       font-weight: bold;
     }
+
+    /* Variables de Colores (se mantienen de la propuesta anterior) */
+        :root {
+            --color-primary-blue: #2196F3; /* Azul vibrante para acción */
+            --color-secondary-green: #4CAF50; /* Verde para éxito/WhatsApp */
+            --color-dark-gray: #333333;
+            --color-medium-gray: #666666;
+            --color-light-gray: #F5F5F5;
+            --color-white: #FFFFFF;
+            --color-border: #E0E0E0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--color-light-gray);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .contenedor-boton {
+            background-color: var(--color-white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .contenedor-boton p {
+            font-size: 1.1em;
+            color: var(--color-medium-gray);
+            margin-bottom: 30px;
+        }
+
+        /* Estilos del botón llamativo */
+        .btn-tienda {
+            display: inline-flex; /* Usar flexbox para centrar contenido verticalmente */
+            align-items: center; /* Alinear verticalmente el texto y el ícono */
+            gap: 12px; /* Espacio entre el ícono y el texto */
+            background: linear-gradient(45deg, var(--color-primary-blue), #1976D2); /* Degradado de azul */
+            color: var(--color-white);
+            padding: 18px 35px;
+            border-radius: 50px; /* Bordes muy redondeados para un aspecto moderno */
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.3em;
+            letter-spacing: 0.5px; /* Espaciado entre letras para mayor legibilidad */
+            transition: all 0.3s ease; /* Transiciones suaves para hover */
+            box-shadow: 0 6px 15px rgba(33, 150, 243, 0.4); /* Sombra para profundidad */
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase; /* Texto en mayúsculas para más impacto */
+        }
+
+        .btn-tienda:hover {
+            transform: translateY(-3px); /* Ligero levantamiento al pasar el mouse */
+            box-shadow: 0 10px 20px rgba(33, 150, 243, 0.6); /* Sombra más pronunciada */
+            background: linear-gradient(45deg, #1976D2, var(--color-primary-blue)); /* Cambio sutil en el degradado */
+        }
+
+        .btn-tienda:active {
+            transform: translateY(0); /* Efecto de "presionado" */
+            box-shadow: 0 3px 10px rgba(33, 150, 243, 0.3);
+        }
+
+        .btn-tienda img {
+            width: 28px; /* Tamaño del ícono */
+            height: 28px;
+            filter: invert(100%); /* Hace que el ícono sea blanco para contrastar */
+        }
+
+        /* Media Queries para Responsividad */
+        @media (max-width: 768px) {
+            .btn-tienda {
+                padding: 15px 30px;
+                font-size: 1.1em;
+                gap: 10px;
+            }
+            .btn-tienda img {
+                width: 24px;
+                height: 24px;
+            }
+            .contenedor-boton {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn-tienda {
+                width: 100%; /* El botón ocupa todo el ancho disponible */
+                justify-content: center;
+                text-align: center;
+                font-size: 1em;
+            }
+        }
   </style>
 </head>
 <body>
@@ -68,5 +168,13 @@
       </li>
     </ul>
   </main>
+   <div class="contenedor-boton">
+        <h2>Descubre Nuestra Colección Completa</h2>
+        <p>Explora todos nuestros productos y encuentra exactamente lo que necesitas en nuestra tienda virtual.</p>
+        <a href="tienda.html" class="btn-tienda" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Icono de Tienda">
+            Visitar Tienda Ahora
+        </a>
+    </div>
 </body>
 </html>
